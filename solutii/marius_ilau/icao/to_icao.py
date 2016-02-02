@@ -34,7 +34,17 @@ def icao(mesaj):
     va genera un fișier numit mesaj.icao_intrare ce va conține
     mesajul scris folosind alfabetul ICAO.
     """
-    pass
+    fisier = open("mesaj.icao_intrare", "w+")
+    l = [item for item in mesaj]
+    for index in range(len(l)):
+        if l[index].islower() == False and l[index] != '\n' and l[index] != ' ':
+            l[index] = chr(ord(l[index])+32)
+        if l[index] == '\n' or l[index] == ' ':
+            fisier.write('\n')
+        else:
+            fisier.write(ICAO[l[index]])
+            fisier.write(" ")
+    fisier.close()
 
 
 if __name__ == "__main__":
