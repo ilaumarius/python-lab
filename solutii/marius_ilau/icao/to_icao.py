@@ -13,8 +13,8 @@ conform următoarelor reguli:
 
 Următoarea sarcină ți-a fost asignată:
     Scrie un program care să primească un fișier ce conține mesajul
-    brut (scris folosind alfabetul ICAO) și generează un fișier
-    numit icao_intrare ce va conține mesajul inițial.
+    ce trebuie transmis și generează un fișier numit mesaj.icao ce
+    va conține mesajul scris folosin alfabetul ICAO.
 
 Mai jos găsiți un dicționar ce conține o versiune a alfabetului ICAO:
 """
@@ -29,27 +29,13 @@ ICAO = {
 }
 
 
-def din_icao(fisier_intrare):
-    """Funcția va primi calea către fișierul ce conține mesajul brut și
-    va genera un fișier numit icao_intrare ce va conține mesajul inițial.
+def icao(mesaj):
+    """Funcția va primi calea mesajul ce trebuie transmis și
+    va genera un fișier numit mesaj.icao_intrare ce va conține
+    mesajul scris folosind alfabetul ICAO.
     """
-    fisier = open(fisier_intrare, "r")
-    mesaj = fisier.read()
-    fisier.close()
-    l = [item for item in mesaj]
-    fisier2 = open("icao_intrare", "w+")
-    ok = 1
-    for index in range(len(l)):
-        if ok == 1:
-            fisier2.write(l[index])
-            ok = 0
-        if l[index] == ' ':
-            ok = 1
-        if l[index] == '\n':
-            fisier2.write(l[index])
-            ok = 1
-    fisier2.close()
+    pass
 
 
 if __name__ == "__main__":
-    din_icao("mesaj.icao")
+    icao("Mesajul ce trebuie transmis")
