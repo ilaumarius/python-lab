@@ -13,13 +13,20 @@ Informații:
 un mesaj prin înlocuirea fiecărei litere cu litera de pe poziția aflată
 la un n pași de ea în alfabet (unde este n este un număr întreg cunoscut
 """
-
-
 def decripteaza(mesaj):
     """Funcția va primi un mesaj criptat folosind cifrul lui Caesar și
     va încearca să îl decripteze.
     """
-    pass
+    l = [item for item in mesaj]
+    cif = ord(l[0])-ord('a')
+
+    for index1 in range(len(l)):
+        car = chr(ord(l[index1])-cif)
+        if car.isalpha():
+            l[index1] = chr(ord(l[index1])-cif)
+        else:
+            l[index1] = ' '
+    print l
 
 
 def main():
