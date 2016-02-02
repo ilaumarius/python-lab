@@ -22,10 +22,14 @@ def decripteaza(mesaj):
 
     for index1 in range(len(l)):
         car = chr(ord(l[index1])-cif)
-        if car.isalpha():
-            l[index1] = chr(ord(l[index1])-cif)
+        if car.islower():
+           l[index1] = chr(ord(l[index1])-cif)
         else:
-            l[index1] = ' '
+            car = chr(122 - cif + ord(l[index1]) - 96)
+            if car.islower():
+                l[index1] = car
+            else:
+                l[index1] = ' '
     print l
 
 
