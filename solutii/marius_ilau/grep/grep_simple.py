@@ -59,15 +59,78 @@ Posibila documentatie:
     - din cadrul arhivei amintite anterior, folderul "src"
     - https://github.com/heyhuyen/python-grep
 """
+import re
 
-def cautare_indiferenta(mesaj):
-    fisier = open("teoreme1.txt", "r")
-    l = [item for item in fisier]
-    p = str(l).count(mesaj)
-    if p == 1:
-        pass
+
+def c_ind(mes):
+    fis = open("teoreme1.txt", "r")
+    if num_ap(mes) == 1:
+        ok = 0
+        counter = 0
+        for line in fis:
+            line = line.rstrip()
+            if mes.lower() in line.lower():
+                ok = 1
+                counter = 0
+            r_obj = re.search('\d+\.  ', line)
+            if r_obj:
+                counter += 1
+            if counter == 2:
+                ok = 0
+            if counter < 2 and ok:
+                print line
     else:
-        pass
+        ok = 0
+        counter = 0
+        for line in fis:
+            line = line.rstrip()
+            if mes.lower() in line.lower():
+                ok = 1
+                counter = 0
+            counter += 1
+            if counter == 3:
+                ok = 0
+            if counter < 3 and ok:
+                print line
+
+def c_ex(mes):
+    fis = open("teoreme1.txt", "r")
+    mes = " " + mes + " "
+    if num_ap(mes) == 1:
+        ok = 0
+        counter = 0
+        for line in fis:
+            line = line.rstrip()
+            if mes.lower() in line.lower():
+                ok = 1
+                counter = 0
+            r_obj = re.search('\d+\.  ', line)
+            if r_obj:
+                counter += 1
+            if counter == 2:
+                ok = 0
+            if counter < 2 and ok:
+                print line
+    else:
+        ok = 0
+        counter = 0
+        for line in fis:
+            line = line.rstrip()
+            if mes.lower() in line.lower():
+                ok = 1
+                counter = 0
+            counter += 1
+            if counter == 3:
+                ok = 0
+            if counter < 3 and ok:
+                print line
+
+
+def num_ap(mes):
+    fis = open("teoreme1.txt", "r")
+    l = [item for item in fis]
+    p = str(l).count(mes)
     return p
 
-print cautare_indiferenta("ta")
+c_ex("law")
+# print numarare_aparitii("th")
