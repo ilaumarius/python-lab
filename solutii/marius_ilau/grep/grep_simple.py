@@ -93,6 +93,7 @@ def c_ind(mes):
             if counter < 3 and ok:
                 print line
 
+
 def c_ex(mes):
     fis = open("teoreme1.txt", "r")
     mes = " " + mes + " "
@@ -126,11 +127,18 @@ def c_ex(mes):
                 print line
 
 
+def c_inl(mes, inl):
+    fis = open("teoreme1.txt", "r")
+    for line in fis:
+        if mes in line:
+            print line.replace(mes, inl)
+
+
 def num_ap(mes):
     fis = open("teoreme1.txt", "r")
     l = [item for item in fis]
     p = str(l).count(mes)
     return p
 
-c_ex("law")
+c_inl("Law", "hector")
 # print numarare_aparitii("th")
