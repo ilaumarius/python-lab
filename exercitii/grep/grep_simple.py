@@ -59,11 +59,3 @@ Posibila documentatie:
     - din cadrul arhivei amintite anterior, folderul "src"
     - https://github.com/heyhuyen/python-grep
 """
-
-def cautare_indiferenta(mesaj):
-    fisier = open("teoreme1.txt", "r")
-    l = [item for item in fisier]
-    p = str(l).count(mesaj)
-    return p
-
-print cautare_indiferenta("ta")
