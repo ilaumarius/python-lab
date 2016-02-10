@@ -20,17 +20,14 @@ Cerințe:
 """
 
 
-def cb_gaseste(_istoric):
-    """Funcția primește o listă cu elemente numerice și trebuie
-    să returneze elementul care nu este duplicat.
-
-    Exemple:
-        1 2 3 2 1 - 3
-        1 1 1 2 2 - 1
-    """
-    pass
+def gaseste(istoric):
+    """Finds the unique item in a list"""
+    unique = 0
+    for item in istoric:
+        unique ^= item
+    return unique
 
 
 if __name__ == "__main__":
-    assert cb_gaseste([1, 2, 3, 2, 1]) == 3
-    assert cb_gaseste([1, 1, 1, 2, 2]) == 1
+    assert gaseste([1, 2, 3, 2, 1]) == 3
+    assert gaseste([1, 1, 1, 2, 2]) == 1

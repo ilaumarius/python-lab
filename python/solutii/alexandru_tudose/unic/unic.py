@@ -20,7 +20,7 @@ Cerințe:
 """
 
 
-def cb_gaseste(_istoric):
+def gaseste(istoric):
     """Funcția primește o listă cu elemente numerice și trebuie
     să returneze elementul care nu este duplicat.
 
@@ -28,9 +28,12 @@ def cb_gaseste(_istoric):
         1 2 3 2 1 - 3
         1 1 1 2 2 - 1
     """
-    pass
+    element = 0
+    for index in istoric:
+        element ^= index
+    return element
 
 
 if __name__ == "__main__":
-    assert cb_gaseste([1, 2, 3, 2, 1]) == 3
-    assert cb_gaseste([1, 1, 1, 2, 2]) == 1
+    assert gaseste([1, 2, 3, 2, 1]) == 3
+    assert gaseste([1, 1, 1, 2, 2]) == 1

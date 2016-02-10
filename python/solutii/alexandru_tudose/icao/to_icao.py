@@ -13,12 +13,11 @@ conform următoarelor reguli:
 
 Următoarea sarcină ți-a fost asignată:
     Scrie un program care să primească un fișier ce conține mesajul
-    brut (scris folosind alfabetul ICAO) și generează un fișier
-    numit icao_intrare ce va conține mesajul inițial.
+    ce trebuie transmis și generează un fișier numit mesaj.icao ce
+    va conține mesajul scris folosin alfabetul ICAO.
 
 Mai jos găsiți un dicționar ce conține o versiune a alfabetului ICAO:
 """
-
 ICAO = {
     'a': 'alfa', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo',
     'f': 'foxtrot', 'g': 'golf', 'h': 'hotel', 'i': 'india', 'j': 'juliett',
@@ -29,11 +28,22 @@ ICAO = {
 }
 
 
-def din_icao():
-    """Funcția va primi calea către fișierul ce conține mesajul brut și
-    va genera un fișier numit icao_intrare ce va conține mesajul inițial.
+def icao(mesaj):
+    """Funcția va primi calea mesajul ce trebuie transmis și
+    va genera un fișier numit mesaj.icao_intrare ce va conține
+    mesajul scris folosind alfabetul ICAO.
     """
-    pass
+    mesaj = mesaj.lower()
+    mesajdecriptat = []
+    for char in mesaj:
+        if char.isalpha():
+            mesajdecriptat.append(ICAO[char])
+            mesajdecriptat.append(" ")
+        else:
+            mesajdecriptat.append("\n")
+    out = open("mesaj.icao_intrare", "w")
+    out.write("".join(mesajdecriptat))
+    out.close()
 
 if __name__ == "__main__":
-    din_icao("mesaj.icao")
+    icao("Mesajul ce trebuie transmis")

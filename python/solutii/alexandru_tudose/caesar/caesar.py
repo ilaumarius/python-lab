@@ -13,28 +13,36 @@ Informații:
 un mesaj prin înlocuirea fiecărei litere cu litera de pe poziția aflată
 la un n pași de ea în alfabet (unde este n este un număr întreg cunoscut
 """
-from __future__ import print_function
 
 
-def cb_decripteaza(_mesaj):
+def decripteaza(mesaj):
     """Funcția va primi un mesaj criptat folosind cifrul lui Caesar și
     va încearca să îl decripteze.
     """
-    pass
+    cnt = 0
+    lst = []
+    for char in mesaj:
+        if char.isalpha():
+            char = chr(ord('a') + (ord(char) - ord(mesaj[0])) % 26)
+            if cnt > 3 and mesaj[cnt-2] in '.!?' >= 0 or cnt == 0:
+                char = char.upper()
+        lst.append(char)
+        cnt += 1
+    print "%s\n" % "".join(lst)
 
 
 def main():
-    """ Main function docstring """
+    """ Main function.
+    """
     try:
         fisier = open("mesaje.secret", "r")
         mesaje = fisier.read()
         fisier.close()
     except IOError:
-        print("Nu am putut obține mesajele.")
+        print "Nu am putut obține mesajele."
         return
-
     for mesaj in mesaje.splitlines():
-        cb_decripteaza(mesaj)
+        decripteaza(mesaj)
 
 if __name__ == "__main__":
     main()

@@ -24,18 +24,52 @@ umplem formele în care se află "x":
 """
 
 
-def cb_umple(_imagine, _punct):
+def inrange(imagine, punct):
+    """Punctul apartine imaginii
+    """
+    ccx, ccy = punct
+    length = len(imagine[0])
+    width = len(imagine)
+    if ccx < width and ccx > -1 and ccy < length and ccy > -1:
+        return 1
+    return 0
+
+
+def umple(img, punct):
     """Funcția primește reprezentarea imaginii și coordonatele unui
     punct.
 
     În cazul în care punctul se află într-o formă închisă trebuie să
     umple forma respectivă cu caracterul "*"
     """
-    pass
+    import Queue
+    que = Queue.Queue()
+    que.put(punct)
+    img[punct[0]][punct[1]] = '*'
+    while que.qsize():
+        point = que.get()
+        sus = (point[0] - 1, point[1])
+        jos = (point[0] + 1, point[1])
+        stanga = (point[0], point[1] - 1)
+        dreapta = (point[0], point[1] + 1)
+        if inrange(img, sus) and img[sus[0]][sus[1]] == '-':
+            que.put(sus)
+            img[sus[0]][sus[1]] = '*'
+        if inrange(img, jos) and img[jos[0]][jos[1]] == '-':
+            que.put(jos)
+            img[jos[0]][jos[1]] = '*'
+        if inrange(img, stanga) and img[stanga[0]][stanga[1]] == '-':
+            que.put(stanga)
+            img[stanga[0]][stanga[1]] = '*'
+        if inrange(img, dreapta) and img[dreapta[0]][dreapta[1]] == '-':
+            que.put(dreapta)
+            img[dreapta[0]][dreapta[1]] = '*'
+    print img
 
 
 def main():
-    """  Main function docstring """
+    """Main definition
+    """
     imaginea = [
         ["-", "-", "-", "-", "-", "*", "-", "-", "-", "-", "-", "-"],
         ["-", "-", "-", "-", "-", "*", "-", "-", "-", "-", "-", "-"],
@@ -44,9 +78,8 @@ def main():
         ["-", "-", "-", "-", "-", "*", "-", "*", "-", "-", "*", "-"],
         ["-", "-", "-", "-", "-", "*", "-", "*", "-", "-", "*", "-"],
     ]
-    cb_umple(imaginea, (1, 3))
-    cb_umple(imaginea, (5, 11))
-
+    umple(imaginea, (1, 3))
+    umple(imaginea, (1, 10))
 
 if __name__ == "__main__":
     main()
